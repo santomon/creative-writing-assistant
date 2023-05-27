@@ -24,7 +24,7 @@ the output should look like so (JSON Object model)
 
 Output format:
 [
-  \{
+  {{
     "id": "string",
     "name": "string",
     "description": "string",
@@ -32,13 +32,13 @@ Output format:
     "end": float,
     "timeframe": "string"
     "significance": int  // value between 1 and 100
-  \}
+  }}
 ]
 
 Example JSON output:
 json
 [
-  \{
+  {{
     "id": "event_1",
     "name": "The Great War",
     "description": "A devastating war breaks out between two powerful nations, resulting in widespread destruction and loss of life.",
@@ -46,8 +46,8 @@ json
     "end": 14355,
     "timeframe": "20th century",
     "significance": 90
-  \},
-  \{
+  }},
+  {{
     "id": "event_2",
     "name": "Discovery of a New Continent",
     "description": "Explorers stumble upon an uncharted continent, rich in resources and inhabited by unknown civilizations.",
@@ -55,7 +55,7 @@ json
     "end": 1590,
     "timeframe": "16th century",
     "significance": 100,
-  \}
+  }}
 ]
 
 further explanations:

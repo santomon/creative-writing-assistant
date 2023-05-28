@@ -79,8 +79,8 @@ the text is given in the following inside "\`\`\`"
 export const exampleRouter = createTRPCRouter({
   hello: publicProcedure
     .input(z.object({ text: z.string() }))
-    .query(  ({ input }) => {
-        // const result = await model.call(await eventTemplate.format({text: input.text}))
+    .query(  async({ input }) => {
+        const result = await model.call(await eventTemplate.format({text: input.text}))
       return {
         greeting: `Hello ${input.text}`
       };

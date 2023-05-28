@@ -34,6 +34,17 @@ const Home: NextPage = () => {
     // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
     const user = useUser();
+    const world = fetch("/api/meme").then((response) => {
+        console.log(response)
+        return response.text()
+    }).then((data) => {
+        console.log(data)
+        return data
+    }).catch((error) => {
+        console.log(error)
+    }   )
+    console.log(world)
+
     console.log(user)
 
     return (
@@ -72,6 +83,7 @@ const Home: NextPage = () => {
                                 to deploy it.
                             </div>
                         </Link>
+                        {/*{world}*/}
                     </div>
                     <p className="text-2xl text-white">
                     </p>

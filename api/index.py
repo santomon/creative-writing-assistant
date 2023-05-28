@@ -6,3 +6,8 @@ app = FastAPI()
 def meme():
     """"""
     return "Hello World"
+
+
+@app.get("/api/")
+def api_home():
+    return "API Home"

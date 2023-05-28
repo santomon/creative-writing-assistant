@@ -8,6 +8,6 @@ def meme():
     return "Hello World"
 
 
-@app.get("/api/")
+@app.get("/api")
 def api_home():
     return "API Home"

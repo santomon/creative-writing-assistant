@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useUser} from "@clerk/nextjs";
 
 import React, {useState} from 'react';
+import {AppType} from "next/app";
 
 const ServerlessButton = () => {
     const [text, setText]  = useState<string>();

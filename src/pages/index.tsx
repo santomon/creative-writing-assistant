@@ -1,17 +1,13 @@
-"use client"
-
 import { type NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { useUser} from "@clerk/nextjs";
+import {useUser} from "@clerk/nextjs";
 
 import React, {useState} from 'react';
-import {AppType} from "next/app";
 
 const ServerlessButton = () => {
     const [text, setText]  = useState<string>();
     // const openai_response = text? api.example.hello.useQuery({ text: text }) : null;
-    const user = useUser();
     const handleClick = () => {
         fetch('/test_events.txt').then( (response) => {
             response.text().then( (X) => {
@@ -24,7 +20,6 @@ const ServerlessButton = () => {
 
         })
     };
-    console.log(user)
 
     return (
         <div>
@@ -37,6 +32,7 @@ const ServerlessButton = () => {
 const Home: NextPage = () => {
     // const hello = api.example.hello.useQuery({ text: "from tRPC" });
 
+    const user = useUser();
     const world = fetch("/api/meme").then((response) => {
         console.log(response)
         return response.text()
@@ -47,6 +43,8 @@ const Home: NextPage = () => {
         console.log(error)
     }   )
     console.log(world)
+
+    console.log(user)
 
     return (
         <>
@@ -73,7 +71,6 @@ const Home: NextPage = () => {
                                 database and authentication.
                             </div>
                         </Link>
-
                         <Link
                             className="flex max-w-xs flex-col gap-4 rounded-xl bg-white/10 p-4 text-white hover:bg-white/20"
                             href="https://create.t3.gg/en/introduction"
@@ -94,6 +91,5 @@ const Home: NextPage = () => {
         </>
     );
 };
-
 
 export default Home;

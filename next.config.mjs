@@ -18,5 +18,10 @@ const config = {
     locales: ["en"],
     defaultLocale: "en",
   },
+  experimental: {
+    esmExternals: false  // bc of uploadthing
+
+
+  }
 };
 export default config;

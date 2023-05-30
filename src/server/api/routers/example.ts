@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
+import {createTRPCRouter, privateProcedure, publicProcedure} from "~/server/api/trpc";
 
 import { Configuration, OpenAIApi } from "openai";
 import {OpenAI} from "langchain/llms/openai"
@@ -85,6 +85,27 @@ export const exampleRouter = createTRPCRouter({
         greeting: `Hello ${input.text}`
       };
     }),
+
+  uploadFiles: privateProcedure
+    // definitely dangerous; but dont know how to tell zod that we expect a file
+    .input(z.object({ files: z.array(z.any())}))
+    .query(async ({ input }) => {
+      const files: File[] = input.files
+      if (files[0]) {
+        const extractedText = await files[0].text()
+        console.log(extractedText)
+        return {
+          files: input.files
+        };
+      }
+      else {
+        return {
+          files: []
+        }
+      }
+    }
+    ),
+
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.example.findMany();
   }),

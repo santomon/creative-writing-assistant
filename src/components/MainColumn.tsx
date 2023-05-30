@@ -1,6 +1,8 @@
 import React, {useState, useCallback, useEffect} from 'react';
 import { useDropzone, DropzoneOptions, FileRejection } from 'react-dropzone';
 import { Textarea } from "@material-tailwind/react";
+import {Input} from "@mui/base";
+import {className} from "postcss-selector-parser";
 
     <div className="w-96">
     </div>
@@ -23,6 +25,13 @@ const MainContent: React.FC = () => {
 
     return (
         <div className="p-4">
+            <Input slotProps={
+                {input : {className: "bg-amber-500 h-20 w-20"},
+                    root: {className: ""}
+                }
+            }>
+
+            </Input>
             <Textarea label="Message" className="bg-amber-500" />
 
             <div {...getRootProps()} className="mt-4 p-4 border border-gray-300 rounded shadow cursor-pointer">

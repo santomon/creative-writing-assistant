@@ -11,6 +11,7 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { ZodError } from "zod";
 import { prisma } from "~/server/db";
+import {getAuth} from "@clerk/nextjs/server";
 
 /**
  * 1. CONTEXT
@@ -45,7 +46,12 @@ const createInnerTRPCContext = (_opts: CreateContextOptions) => {
  * @see https://trpc.io/docs/context
  */
 export const createTRPCContext = (_opts: CreateNextContextOptions) => {
-  return createInnerTRPCContext({});
+  const {req} = _opts;
+  const userId = getAuth(req).userId;
+  return {
+    userId,
+    ...createInnerTRPCContext({})
+  };
 };
 
 /**

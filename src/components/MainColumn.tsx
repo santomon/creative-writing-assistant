@@ -8,7 +8,7 @@ const MainContent: React.FC = () => {
     const [text, setText] = useState<string>('');
     const [files, setFiles] = useState<File[]>([]);
 
-    const onDrop = useCallback<DropzoneOptions['onDrop']>((acceptedFiles) => {
+    const onDrop = useCallback((acceptedFiles: File[]) => {
         setFiles(prevFiles => [...prevFiles, ...acceptedFiles]);
     }, []);
 

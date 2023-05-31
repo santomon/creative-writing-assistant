@@ -88,7 +88,7 @@ export const exampleRouter = createTRPCRouter({
 
   uploadFiles: privateProcedure
     // definitely dangerous; but dont know how to tell zod that we expect a file
-    .input(z.object({ files: z.array(z.any())}))
+    .input(z.object({ files: z.array(z.instanceof(File))}))
     .query(async ({ input }) => {
       const files: File[] = input.files as File[]
       if (files[0]) {

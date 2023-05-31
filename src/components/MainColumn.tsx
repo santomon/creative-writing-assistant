@@ -5,12 +5,15 @@ import { Textarea } from "@material-tailwind/react";
 import {Input} from "@mui/base";
 import {className} from "postcss-selector-parser";
 import {OurFileRouter} from "~/server/uploadthing";
+import {api} from "~/utils/api";
 
     <div className="w-96">
     </div>
 const MainColumn: React.FC = () => {
     const [text, setText] = useState<string>('');
     const [files, setFiles] = useState<File[]>([]);
+
+    const uploadedSuccesfully = api.example.uploadFiles.useQuery({files: files})
 
     const onDrop = useCallback((acceptedFiles: File[]) => {
         setFiles(prevFiles => [...prevFiles, ...acceptedFiles]);

@@ -100,7 +100,7 @@ export const createTRPCRouter = t.router;
 export const publicProcedure = t.procedure;
 
 const enforceUserIsAuthed = t.middleware(async ({ctx, next}) => {
-    if (!ctx.userId) {
+    if (!ctx.userId || !ctx) {
       throw new Error("Not authorized");
     }
     return next({ctx: {...ctx, userId: ctx.userId}});

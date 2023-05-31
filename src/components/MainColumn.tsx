@@ -6,7 +6,7 @@ import {className} from "postcss-selector-parser";
 
     <div className="w-96">
     </div>
-const MainContent: React.FC = () => {
+const MainColumn: React.FC = () => {
     const [text, setText] = useState<string>('');
     const [files, setFiles] = useState<File[]>([]);
 
@@ -52,4 +52,4 @@ const MainContent: React.FC = () => {
     );
 }
 
-export default MainContent;
+export default MainColumn;

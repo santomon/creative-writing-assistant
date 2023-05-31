@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 import {useUser} from "@clerk/nextjs";
 
 import React, {useState} from 'react';
-import MainContent from "~/components/MainColumn";
+import MainColumn from "~/components/MainColumn";
 
 
 
@@ -28,7 +28,7 @@ const Home: NextPage = () => {
                         Create <span className="text-[hsl(280,100%,70%)]">T3</span> App
                     </h1>
                     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-8">
-                        <MainContent />
+                        <MainColumn />
                     </div>
                     <p className="text-2xl text-white">
                     </p>

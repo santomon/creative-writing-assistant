@@ -3,6 +3,8 @@ import { api } from "~/utils/api";
 import "~/styles/globals.css";
 import {ClerkProvider} from "@clerk/nextjs";
 import {ThemeProvider} from "@material-tailwind/react";
+import "@uploadthing/react/styles.css";
+
 
 const MyApp: AppType = ({ Component, pageProps }) => {
 

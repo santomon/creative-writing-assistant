@@ -3,7 +3,7 @@ import {createUploadthing, type FileRouter} from "uploadthing/next-legacy";
 import {NextApiRequest, NextApiResponse} from "next";
 import {getAuth} from "@clerk/nextjs/server";
 import {prisma} from "~/server/db";
-import middleware from "../../../middleware";
+import middleware from "../../middleware";
 
 
 const f = createUploadthing();
@@ -15,7 +15,6 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware((req: NextApiRequest, res: NextApiResponse) => {
       // This code runs on your server before upload
-      // const user = await getAuth(req)
       console.log(req.url)
 
       // If you throw, the user will not be able to upload

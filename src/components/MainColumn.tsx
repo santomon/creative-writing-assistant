@@ -1,8 +1,10 @@
 import React, {useState, useCallback, useEffect} from 'react';
+import {UploadButton} from "@uploadthing/react"
 import { useDropzone, DropzoneOptions, FileRejection } from 'react-dropzone';
 import { Textarea } from "@material-tailwind/react";
 import {Input} from "@mui/base";
 import {className} from "postcss-selector-parser";
+import {OurFileRouter} from "~/server/api/routers/uploadthing";
 
     <div className="w-96">
     </div>
@@ -48,6 +50,18 @@ const MainColumn: React.FC = () => {
                     <li key={i}>{file.name}</li>
                 ))}
             </ul>
+          <UploadButton<OurFileRouter>
+            endpoint="imageUploader"
+            onClientUploadComplete={(res) => {
+              // Do something with the response
+              console.log("Files: ", res);
+              alert("Upload Completed");
+            }}
+            onUploadError={(error: Error) => {
+              // Do something with the error.
+              alert(`ERROR! ${error.message}`);
+            }}
+          />
         </div>
     );
 }

@@ -23,6 +23,7 @@
     "@trpc/next": "^10.26.0",
     "@trpc/react-query": "^10.26.0",
     "@trpc/server": "^10.26.0",
+    "@uploadthing/react": "^4.0.0",
     "fs": "^0.0.1-security",
     "langchain": "^0.0.84",
     "next": "^13.4.2",

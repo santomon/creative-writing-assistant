@@ -1,4 +1,5 @@
 import {TrpcProvider} from "./TrpcProvider";
+import {ClerkProvider} from "@clerk/nextjs";
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,12 +15,14 @@ export default function RootLayout({
 }) {
   return (
       <TrpcProvider>
-        <html lang="en">
-            <head></head>
-            <body>
-                {children}
-            </body>
-        </html>
+        <ClerkProvider>
+          <html lang="en">
+          <head></head>
+          <body>
+          {children}
+          </body>
+          </html>
+        </ClerkProvider>
       </TrpcProvider>
   )
 }

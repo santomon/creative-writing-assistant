@@ -117,13 +117,11 @@ export const exampleRouter = createTRPCRouter({
       const fileInfosWithUrls = fileInfos.map((fileInfo, index) => {
         return {
           ...fileInfo,
-          ...fileUrls[index]
+          ...fileUrls[index]!  // fuck array zipping lmao
         }
       }
       )
-      fileInfosWithUrls
-      return
-
+      return fileInfosWithUrls
       }
     )
   ,

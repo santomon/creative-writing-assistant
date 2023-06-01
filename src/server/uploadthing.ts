@@ -1,5 +1,7 @@
 /** server/uploadthing.ts */
 import {createUploadthing, type FileRouter} from "uploadthing/next-legacy";
+import { utapi } from "uploadthing/server";
+
 import {NextApiRequest, NextApiResponse} from "next";
 import {getAuth} from "@clerk/nextjs/server";
 import {prisma} from "~/server/db";
@@ -28,6 +30,8 @@ export const ourFileRouter = {
       console.log("Upload complete for userId:", metadata.userId);
       metadata.userId;
       console.log("size", file.size)
+
+      if (!prisma || !prisma.fileRegister) throw new Error("prisma not defined");
       const fileRegister = await prisma.fileRegister.create({
         data: {
           name: file.name,

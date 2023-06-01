@@ -90,9 +90,8 @@ export const exampleRouter = createTRPCRouter({
     // definitely dangerous; but dont know how to tell zod that we expect a file
     .input(z.object({ files: z.array(z.instanceof(File))}))
     .query(async ({ input }) => {
-      const files: File[] = input.files as File[]
-      if (files[0]) {
-        const extractedText = await files[0].text()
+      if (input.files[0]) {
+        const extractedText = await input.files[0].text()
         console.log(extractedText)
         return {
           files: input.files

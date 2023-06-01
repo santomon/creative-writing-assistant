@@ -1,5 +1,7 @@
 import {TrpcProvider} from "./TrpcProvider";
 import {ClerkProvider} from "@clerk/nextjs";
+import "@uploadthing/react/styles.css";
+
 
 export const metadata = {
   title: 'Create Next App',

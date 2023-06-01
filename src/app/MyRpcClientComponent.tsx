@@ -18,7 +18,7 @@ export default function MyRpcClientComponent(): JSX.Element {
     return (
       <>
           <p>
-              Hello, {name.data!.name}, greetings from client component land!
+              Hello, {name.data.name}, greetings from client component land!
           </p>
           <UploadButton<OurFileRouter>
             endpoint="imageUploader"

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import {createTRPCRouter, privateProcedure, publicProcedure} from "~/server/api/trpc";
+import {createTRPCRouter, privateProcedure, publicProcedure} from "~/meme-server/api/trpc";
 import {utapi} from "uploadthing/server"
 
 

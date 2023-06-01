@@ -4,7 +4,7 @@ import { useDropzone, DropzoneOptions, FileRejection } from 'react-dropzone';
 import { Textarea } from "@material-tailwind/react";
 import {Input} from "@mui/base";
 import {className} from "postcss-selector-parser";
-import {OurFileRouter} from "~/server/uploadthing";
+import {OurFileRouter} from "~/meme-server/uploadthing";
 import {api} from "~/utils/api";
 
     <div className="w-96">

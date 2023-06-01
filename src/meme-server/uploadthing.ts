@@ -4,7 +4,7 @@ import { utapi } from "uploadthing/server";
 
 import {NextApiRequest, NextApiResponse} from "next";
 import {getAuth, auth} from "@clerk/nextjs/server";
-import {prisma} from "~/server/db";
+import {prisma} from "~/meme-server/db";
 import middleware from "../middleware";
 
 

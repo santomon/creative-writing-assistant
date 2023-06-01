@@ -2,6 +2,7 @@ import { z } from "zod";
 import {createTRPCRouter, privateProcedure, publicProcedure} from "~/server/api/trpc";
 import {utapi} from "uploadthing/server"
 
+
 import { Configuration, OpenAIApi } from "openai";
 import {OpenAI} from "langchain/llms/openai"
 import {PromptTemplate} from "langchain";
@@ -89,7 +90,8 @@ export const exampleRouter = createTRPCRouter({
 
   uploadFiles: privateProcedure
     // definitely dangerous; but dont know how to tell zod that we expect a file
-    .input(z.object({ files: z.array(z.instanceof(File))}))
+    .input(z.object({ files: z.custom<File>().array()}))
+
     .query(async ({ input }) => {
       if (input.files[0]) {
         const extractedText = await input.files[0].text()

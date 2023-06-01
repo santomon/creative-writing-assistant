@@ -3,7 +3,7 @@ import {createUploadthing, type FileRouter} from "uploadthing/next-legacy";
 import { utapi } from "uploadthing/server";
 
 import {NextApiRequest, NextApiResponse} from "next";
-import {getAuth} from "@clerk/nextjs/server";
+import {getAuth, auth} from "@clerk/nextjs/server";
 import {prisma} from "~/server/db";
 import middleware from "../middleware";
 
@@ -17,14 +17,15 @@ export const ourFileRouter = {
     // Set permissions and file types for this FileRoute
     .middleware((req: NextApiRequest, res: NextApiResponse) => {
       // This code runs on your server before upload
-      getAuth(req)
+      const user = getAuth(req)
+
       console.log(req.url)
 
       // If you throw, the user will not be able to upload
       // if (!user || !user.userId) throw new Error("Unauthorized");
 
       // Whatever is returned here is accessible in onUploadComplete as `metadata`
-      return {userId: "xd"};
+      return {userId: user.userId};
     })
     .onUploadComplete(async ({metadata, file}) => {
       // This code RUNS ON YOUR SERVER after upload

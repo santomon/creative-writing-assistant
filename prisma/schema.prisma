@@ -23,7 +23,8 @@ model FileRegister {
     name      String
     size      Int?
     // type      String?
-    url       String
+    fileKey String
+
     // user      User     @relation(fields: [userId], references: [id])
     userId    String
 }

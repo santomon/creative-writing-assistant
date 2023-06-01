@@ -1,5 +1,6 @@
 import { z } from "zod";
 import {createTRPCRouter, privateProcedure, publicProcedure} from "~/server/api/trpc";
+import {utapi} from "uploadthing/server"
 
 import { Configuration, OpenAIApi } from "openai";
 import {OpenAI} from "langchain/llms/openai"
@@ -104,6 +105,28 @@ export const exampleRouter = createTRPCRouter({
       }
     }
     ),
+
+  getFiles: privateProcedure
+    .input(z.object({userId: z.string()}))
+    .query(async ({ ctx, input }) => {
+      const fileInfos = await ctx.prisma.fileRegister.findMany({
+        where: {userId: input.userId},
+        select: {fileKey: true, name: true}
+      })
+      const fileUrls = (await utapi.getFileUrls(fileInfos.map(key => key.fileKey)))
+      const fileInfosWithUrls = fileInfos.map((fileInfo, index) => {
+        return {
+          ...fileInfo,
+          ...fileUrls[index]
+        }
+      }
+      )
+      fileInfosWithUrls
+      return
+
+      }
+    )
+  ,
 
   getAll: publicProcedure.query(({ ctx }) => {
     return ctx.prisma.example.findMany();

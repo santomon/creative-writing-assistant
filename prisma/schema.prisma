@@ -73,3 +73,10 @@ model Rule {
 }
 
 
+model Citation {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  rule        Rule     @relation(fields: [ruleId], references: [id])
+}
+

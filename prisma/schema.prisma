@@ -2,29 +2,74 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "mysql"
-    url = env("DATABASE_URL")
-    relationMode = "prisma"
+  provider     = "mysql"
+  url          = env("DATABASE_URL")
+  relationMode = "prisma"
 }
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+
+model User {
+  id   String @id @default(cuid())
+  name String
 }
 
 model FileRegister {
-    id        String   @id @default(cuid())
-    // createdAt DateTime @default(now())
-    // updatedAt DateTime @updatedAt
-    name      String
-    size      Int?
-    // type      String?
-    fileKey String
+  id      String @id @default(cuid())
+  // createdAt DateTime @default(now())
+  // updatedAt DateTime @updatedAt
+  name    String
+  size    Int?
+  // type      String?
+  fileKey String
 
-    // user      User     @relation(fields: [userId], references: [id])
-    userId    String
+  // user      User     @relation(fields: [userId], references: [id])
+  userId String
 }
+
+model Event {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  date        DateTime
+  description String
+  location    String
+  // user      User     @relation(fields: [userId], references: [id])
+  // userId    String
+}
+
+model World {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  // user      User
+  // userId    String  @relation(fields: [userId], references: [id])
+}
+
+model Character {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  // user      User
+  // userId    String  @relation(fields: [userId], references: [id])
+}
+
+
+model Rule {
+  id          String   @id @default(cuid())
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  name        String
+  description String
+  // user      User
+  // userId    String  @relation(fields: [userId], references: [id])
+}
+
+

@@ -6,8 +6,9 @@ import MyRpcClientComponent from "../MyRpcClientComponent";
 
 // a simple page to hold MyRpcClientComponent
 
-export default function Home() {
+const Home = () => {
   return (
-      <MyRpcClientComponent/>
+    <MyRpcClientComponent/>
   )
 }
+export default Home

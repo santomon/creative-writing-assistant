@@ -41,7 +41,7 @@ description String
 user        User     @relation(fields: [userId], references: [id])
 userId      String
 characters  Character[]
-rules       Rule[]
+rules       ExplicitRule[]
 events      Event[]
 
 @@index([userId])
@@ -73,7 +73,7 @@ model Character {
   @@index([worldId])
 }
 
-model Rule {
+model ExplicitRule {
   id          String     @id @default(cuid())
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
@@ -90,7 +90,7 @@ model Citation {
   id         String       @id @default(cuid())
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
-  rule       Rule         @relation(fields: [ruleId], references: [id])
+  rule       ExplicitRule         @relation(fields: [ruleId], references: [id])
   ruleId     String
   document   FileRegister @relation(fields: [documentId], references: [id])
   documentId String

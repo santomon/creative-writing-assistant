@@ -12,8 +12,9 @@ datasource db {
 }
 
 model User {
-  id   String @id @default(cuid())
-  name String
+  id    String  @id @default(cuid())
+  name  String
+  world World[]
 }
 
 model FileRegister {
@@ -26,9 +27,25 @@ model FileRegister {
   fileKey String
 
   // user      User     @relation(fields: [userId], references: [id])
-  userId String
+  userId    String
+  citations Citation[]
 }
 
+
+model World {
+id          String   @id @default(cuid())
+createdAt   DateTime @default(now())
+updatedAt   DateTime @updatedAt
+name        String
+description String
+user        User     @relation(fields: [userId], references: [id])
+userId      String
+characters  Character[]
+rules       Rule[]
+events      Event[]
+
+@@index([userId])
+}
 model Event {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
@@ -37,18 +54,11 @@ model Event {
   date        DateTime
   description String
   location    String
-  // user      User     @relation(fields: [userId], references: [id])
-  // userId    String
-}
 
-model World {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  description String
-  // user      User
-  // userId    String  @relation(fields: [userId], references: [id])
+  world       World    @relation(fields: [worldId], references: [id])
+  worldId     String
+
+  @@index([worldId])
 }
 
 model Character {
@@ -57,26 +67,34 @@ model Character {
   updatedAt   DateTime @updatedAt
   name        String
   description String
-  // user      User
-  // userId    String  @relation(fields: [userId], references: [id])
-}
+  world       World    @relation(fields: [worldId], references: [id])
+  worldId     String
 
+  @@index([worldId])
+}
 
 model Rule {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  id          String     @id @default(cuid())
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
   name        String
   description String
-  // user      User
-  // userId    String  @relation(fields: [userId], references: [id])
-}
+  citations   Citation[]
+  world       World      @relation(fields: [worldId], references: [id])
+  worldId     String
 
+  @@index([worldId])
+}
 
 model Citation {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  rule        Rule     @relation(fields: [ruleId], references: [id])
-}
+  id         String       @id @default(cuid())
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  rule       Rule         @relation(fields: [ruleId], references: [id])
+  ruleId     String
+  document   FileRegister @relation(fields: [documentId], references: [id])
+  documentId String
 
+  @@index([ruleId])
+  @@index([documentId])
+}

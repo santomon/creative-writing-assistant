@@ -21,7 +21,7 @@ export default function MyRpcClientComponent(): JSX.Element {
               Hello, {name.data.name}, greetings from client component land!
           </p>
           <UploadButton<OurFileRouter>
-            endpoint="imageUploader"
+            endpoint="textUploader"
             onClientUploadComplete={(res) => {
                 // Do something with the response
                 console.log("Files: ", res);

@@ -54,7 +54,7 @@
 //                 ))}
 //             </ul>
 //           <UploadButton<OurFileRouter>
-//             endpoint="imageUploader"
+//             endpoint="textUploader"
 //             onClientUploadComplete={(res) => {
 //               // Do something with the response
 //               console.log("Files: ", res);

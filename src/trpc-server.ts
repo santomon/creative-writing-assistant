@@ -1,7 +1,8 @@
 import {initTRPC} from '@trpc/server';
 import {z} from 'zod';
 import {utapi} from "uploadthing/server"
-import {privateProcedure, publicProcedure} from "~/server/api/trpc";
+import {createTRPCRouter, privateProcedure, publicProcedure} from "~/server/api/trpc";
+import {inferenceRouter} from "~/server/api/inference";
 
 const t = initTRPC.create();
 
@@ -24,7 +25,7 @@ const userList: User[] = [
 ];
 
 // this is our RPC API
-export const appRouter = t.router({
+export const mainRouter = t.router({
   userById: publicProcedure
     .input(z.number())
     .query((req) => {
@@ -72,6 +73,12 @@ export const appRouter = t.router({
   ,
 
 
+
 });
+
+export const appRouter = createTRPCRouter({
+  main: mainRouter,
+  inference: inferenceRouter,
+  })
 
 export type AppRouter = typeof appRouter;

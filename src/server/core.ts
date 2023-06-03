@@ -1,6 +1,7 @@
-import {PDFLoader, DocxLoader, TextLoader, UnstructuredLoader} from "langchain/document_loaders";
-
-const file = new File([], "xd", {})
+import { UnstructuredLoader} from "langchain/document_loaders/fs/unstructured";
+import {PDFLoader} from "langchain/document_loaders/fs/pdf"
+import {DocxLoader} from "langchain/document_loaders/fs/docx";
+import {TextLoader} from "langchain/document_loaders/fs/text"
 
 const asDocuments = (files: File[]) => {
   return files.map(async file => {

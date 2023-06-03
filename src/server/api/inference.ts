@@ -5,7 +5,7 @@ import {utapi} from "uploadthing/server";
 
 import * as core from "~/server/core"
 import {asDocuments2} from "~/server/core";
-import {UnstructuredLoader} from "langchain/document_loaders";
+import {UnstructuredLoader} from "langchain/document_loaders/fs/unstructured";
 
 const t = initTRPC.create()
 
@@ -37,7 +37,7 @@ export const inferenceRouter = t.router({
         )
         const docs = await loader.load()
 
-        const response =
+        const response = "xd"
 
       }),
   }

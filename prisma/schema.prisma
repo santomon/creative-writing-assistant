@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -18,34 +15,29 @@ model User {
 }
 
 model FileRegister {
-  id      String @id @default(cuid())
-  // createdAt DateTime @default(now())
-  // updatedAt DateTime @updatedAt
-  name    String
-  size    Int?
-  // type      String?
-  fileKey String
-
-  // user      User     @relation(fields: [userId], references: [id])
+  id        String     @id @default(cuid())
+  name      String
+  size      Int?
+  fileKey   String
   userId    String
   citations Citation[]
 }
 
-
 model World {
-id          String   @id @default(cuid())
-createdAt   DateTime @default(now())
-updatedAt   DateTime @updatedAt
-name        String
-description String
-user        User     @relation(fields: [userId], references: [id])
-userId      String
-characters  Character[]
-rules       ExplicitRule[]
-events      Event[]
+  id          String         @id @default(cuid())
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  name        String
+  description String
+  userId      String
+  user        User           @relation(fields: [userId], references: [id])
+  characters  Character[]
+  rules       ExplicitRule[]
+  events      Event[]
 
-@@index([userId])
+  @@index([userId])
 }
+
 model Event {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
@@ -54,9 +46,8 @@ model Event {
   date        DateTime
   description String
   location    String
-
-  world       World    @relation(fields: [worldId], references: [id])
   worldId     String
+  world       World    @relation(fields: [worldId], references: [id])
 
   @@index([worldId])
 }
@@ -67,8 +58,8 @@ model Character {
   updatedAt   DateTime @updatedAt
   name        String
   description String
-  world       World    @relation(fields: [worldId], references: [id])
   worldId     String
+  world       World    @relation(fields: [worldId], references: [id])
 
   @@index([worldId])
 }
@@ -79,9 +70,9 @@ model ExplicitRule {
   updatedAt   DateTime   @updatedAt
   name        String
   description String
+  worldId     String
   citations   Citation[]
   world       World      @relation(fields: [worldId], references: [id])
-  worldId     String
 
   @@index([worldId])
 }
@@ -90,10 +81,10 @@ model Citation {
   id         String       @id @default(cuid())
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
-  rule       ExplicitRule         @relation(fields: [ruleId], references: [id])
   ruleId     String
-  document   FileRegister @relation(fields: [documentId], references: [id])
   documentId String
+  rule       ExplicitRule @relation(fields: [ruleId], references: [id])
+  document   FileRegister @relation(fields: [documentId], references: [id])
 
   @@index([ruleId])
   @@index([documentId])
